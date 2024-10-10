@@ -107,10 +107,12 @@
             successMessage.innerHTML = "";
 
             var valid = true;
+            var alertMessages = []; // Array untuk menyimpan pesan alert
 
             // Validasi Nama
             if (name === "") {
                 nameError.innerHTML = "Nama harus diisi";
+                alertMessages.push("Nama harus diisi");
                 valid = false;
             }
 
@@ -118,19 +120,28 @@
             var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
             if (email === "") {
                 emailError.innerHTML = "Email harus diisi";
+                alertMessages.push("Email harus diisi");
                 valid = false;
             } else if (!emailPattern.test(email)) {
                 emailError.innerHTML = "Format email tidak valid";
+                alertMessages.push("Format email tidak valid");
                 valid = false;
             }
 
             // Validasi Alamat
             if (address === "") {
                 addressError.innerHTML = "Alamat lengkap harus diisi";
+                alertMessages.push("Alamat lengkap harus diisi");
                 valid = false;
             } else if (address.length < 10) {
                 addressError.innerHTML = "Alamat harus minimal 10 karakter";
+                alertMessages.push("Alamat harus minimal 10 karakter");
                 valid = false;
+            }
+
+            // Jika ada pesan error, tampilkan alert
+            if (alertMessages.length > 0) {
+                alert(alertMessages.join("\n")); // Gabungkan semua pesan menjadi satu dan tampilkan dengan alert
             }
 
             // Jika valid, tampilkan pesan sukses
